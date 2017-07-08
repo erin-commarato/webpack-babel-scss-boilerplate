@@ -13,17 +13,22 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 ```
 > git clone https://github.com/erin-commarato/webpack-babel-scss-boilerplate.git
 > cd webpack-babel-scss-boilerplate
+> npm install
 ```
 
 ### Not familiar with Git?
 
 Download the .zip file. Extract the contents of the zip file, then open your terminal, change
-to the project directory
+to the project directory and then:
+
+```
+> npm install
+```
 
 ## Deployment
 
 Build webpack bundle using
 
 ```
-> npm run build 
+> npm run build
 ```
