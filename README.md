@@ -39,3 +39,11 @@ Build webpack bundles using
 > npm run build - create build files in `build` folder
 > npm clean - delete the build folder
 ```
+
+Serve webpack bundles using
+
+```
+> npm run serve
+```
+
+Webpack dev server will serve on http://localhost:8080
