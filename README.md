@@ -1,6 +1,12 @@
 # Webpack Babel SCSS Boilerplate
 
-Quickstart boilerplate for single page JS applications that utilizes Webpack, Babel and SCSS
+Quickstart boilerplate for single page JS applications that utilizes Webpack, Babel and SCSS. Features include:
+- [x] ECMAScript 6
+- [x] Cache busting
+- [x] Latest Webpack (v.3)
+- [x] Separate CSS stylesheets
+- [x] Export separate vendor files
+- [x] SCSS support
 
 ## Getting Started
 
@@ -27,8 +33,9 @@ to the project directory and then:
 
 ## Deployment
 
-Build webpack bundle using
+Build webpack bundles using
 
 ```
-> npm run build
+> npm run build - create build files in `build` folder
+> npm clean - delete the build folder
 ```
