@@ -6,44 +6,56 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
-  //filename: "[name].[contenthash].css",
-    filename: "[name].css",
+    filename: "[name].[contenthash].css",
     disable: process.env.NODE_ENV === "development"
 });
 
-const config = {
-  entry: './src/index.js',
+//add vendor libs here e.g. react, redux, lodash, etc.
+const VENDOR_LIBS = ['lodash'];
+
+module.exports = {
+  entry: {
+    bundle: './src/index.js',
+    vendor: VENDOR_LIBS
+  },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'build'),
+    filename: '[name].[chunkhash].js'
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: 'babel-loader'
+        exclude: /node_modules/,
+        loaders: [
+          'babel-loader'
+        ]
       },
       {
         test: /\.scss$/,
-            use: extractSass.extract({
-                use: [{
-                    loader: "css-loader"
-                }, {
-                    loader: "sass-loader"
-                }],
-                // use style-loader in development
+        exclude: /node_modules/,
+        use: extractSass.extract({
+            use: [{
+                loader: "css-loader"
+            }, {
+                loader: "sass-loader"
+            }],
                 fallback: "style-loader"
             })
-      },{
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'url'
+      },
+      { test: /\.(png|jpg)$/, use: 'url-loader?limit=15000' },
+      { test: /\.eot(\?v=\d+.\d+.\d+)?$/, use: 'file-loader' },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'url-loader?limit=10000&mimetype=application/font-woff'
+      }, {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: 'url-loader?limit=10000&mimetype=image/svg+xml'
       }
+
     ]
   },
   plugins: [
           extractSass
       ]
 };
-
-module.exports = config;
