@@ -1,6 +1,8 @@
 // output path must be absolute, so we use a node js helper
 // "path module" to generate the path via path.resolve(__dirname, 'build')
+var webpack = require('webpack');
 const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //extract text from bundle into separate file
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -56,6 +58,9 @@ module.exports = {
     ]
   },
   plugins: [
-          extractSass
-      ]
+    extractSass,
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    })
+  ]
 };
